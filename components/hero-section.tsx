@@ -2,7 +2,8 @@
 
 import { PhoneMockup } from "@/components/phone-mockup"
 import { Button } from "@/components/ui/button"
-import { Download, Star, Zap } from "lucide-react"
+import { WaitingListForm } from "@/components/waiting-list-form"
+import { Download, Star, Zap, Bell } from "lucide-react"
 import { useEffect, useState } from "react"
 
 function Countdown() {
@@ -64,6 +65,8 @@ function Countdown() {
 }
 
 export function HeroSection() {
+  const [showWaitingList, setShowWaitingList] = useState(false)
+
   return (
     <section className="relative min-h-screen overflow-hidden pt-24 pb-16">
       {/* Background decorations */}
@@ -128,12 +131,12 @@ export function HeroSection() {
               </a>
             </Button>
             <Button
-              asChild
-              variant="outline"
               size="lg"
-              className="rounded-full border-teal-200 bg-white/60 px-8 text-base font-bold text-navy-800 backdrop-blur-sm hover:bg-teal-50 hover:text-teal-500"
+              onClick={() => setShowWaitingList(true)}
+              className="rounded-full border-2 border-teal-400 bg-white text-base font-bold text-teal-500 hover:bg-teal-50 shadow-lg shadow-teal-400/20"
             >
-              <a href="#features">Lihat Fitur</a>
+              <Bell className="mr-2 h-5 w-5" />
+              Waiting List
             </Button>
           </div>
 
@@ -197,6 +200,7 @@ export function HeroSection() {
         </div>
       </div>
 
+      <WaitingListForm isOpen={showWaitingList} onClose={() => setShowWaitingList(false)} />
     </section>
   )
 }

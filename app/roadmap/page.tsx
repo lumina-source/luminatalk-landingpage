@@ -3,9 +3,11 @@
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Button } from '@/components/ui/button'
+import { PhoneMockup } from '@/components/phone-mockup'
+import { AppStoreBadges } from '@/components/app-store-badges'
 import Image from 'next/image'
 import Link from 'next/link'
-import { CheckCircle2, Rocket, Store, Zap, Trophy, ArrowRight } from 'lucide-react'
+import { CheckCircle2, Rocket, Store, Zap, Trophy, ArrowRight, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 
 const phases = [
@@ -25,7 +27,11 @@ const phases = [
       'Mengumpulkan feedback langsung dari pengguna pertama'
     ],
     color: 'from-teal-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    borderColor: 'border-teal-200',
+    mockups: [
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-hVp0oqFyIlBw23VwPIltCPQLxqyq4f.jpeg', type: 'ios' as const, label: 'Home' },
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/15-3G5yiwaQzF6GeOTWjxbZgT0SX3nh61.jpeg', type: 'android' as const, label: 'Roleplay' }
+    ]
   },
   {
     id: 2,
@@ -43,7 +49,11 @@ const phases = [
       'Jangkauan pengguna yang lebih luas'
     ],
     color: 'from-blue-50 to-indigo-50',
-    borderColor: 'border-blue-200'
+    borderColor: 'border-blue-200',
+    mockups: [
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-SYAxzNTtv4yENkSKBjsNC2Cszm541D.jpeg', type: 'android' as const, label: 'Hiragana' },
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-ey1J9kUG7dNdgly6S0nkI4pz55Rkrc.jpeg', type: 'ios' as const, label: 'Katakana' }
+    ]
   },
   {
     id: 3,
@@ -61,7 +71,11 @@ const phases = [
       'Peluncuran resmi di Apple App Store (iOS)'
     ],
     color: 'from-purple-50 to-pink-50',
-    borderColor: 'border-purple-200'
+    borderColor: 'border-purple-200',
+    mockups: [
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/12-IWKIUyBIkaaLHkBMoXBQo1WkDMr4vY.jpeg', type: 'ios' as const, label: 'JLPT Study' },
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/13-oF5PnAgSB8jMj62Z3VbkPpv1jUJzM4.jpeg', type: 'android' as const, label: 'Grammar' }
+    ]
   },
   {
     id: 4,
@@ -79,7 +93,11 @@ const phases = [
       'Ekosistem pembelajaran komprehensif'
     ],
     color: 'from-yellow-50 to-orange-50',
-    borderColor: 'border-yellow-200'
+    borderColor: 'border-yellow-200',
+    mockups: [
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/14-71CwYIEYF4rHk2LILx5mFHwjlcjZh9.jpeg', type: 'ios' as const, label: 'Partikel' },
+      { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/16-m2ossbxmjniR4JSkUvcVjyuk6Bjgqm.jpeg', type: 'ios' as const, label: 'JLPT Tryout' }
+    ]
   }
 ]
 
@@ -95,23 +113,14 @@ function PhaseCard({ phase, isHovered, setHovered }: any) {
       
       <div
         className={`group relative rounded-2xl border-2 ${phase.borderColor} bg-gradient-to-br ${phase.color} p-6 md:p-8 transition-all duration-300 cursor-pointer ${
-          isHovered ? 'scale-105 shadow-2xl' : 'shadow-lg'
+          isHovered ? 'scale-105 shadow-2xl ring-2 ring-teal-400' : 'shadow-lg'
         }`}
         onMouseEnter={() => setHovered(phase.id)}
         onMouseLeave={() => setHovered(null)}
       >
         {/* Status Badge */}
-        <div className="absolute -top-4 right-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r px-4 py-2 text-white text-xs font-bold uppercase tracking-wide shadow-lg"
-          style={{
-            backgroundImage: `linear-gradient(to right, var(--tw-gradient-stops))`
-          }}
-        >
-          <style>{`
-            [class*="from-${phase.statusColor.split(' ')[0]}"]::before {
-              content: '${phase.status === 'LIVE NOW' ? '✓' : ''}';
-            }
-          `}</style>
-          <div className={`inline-block h-2 w-2 rounded-full bg-white animate-pulse`} />
+        <div className={`absolute -top-4 right-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${phase.statusColor} px-4 py-2 text-white text-xs font-bold uppercase tracking-wide shadow-lg`}>
+          <div className={`inline-block h-2 w-2 rounded-full bg-white ${phase.status === 'LIVE NOW' ? 'animate-pulse' : ''}`} />
           {phase.status}
         </div>
 
@@ -124,7 +133,7 @@ function PhaseCard({ phase, isHovered, setHovered }: any) {
         </div>
 
         {/* Content */}
-        <div className="space-y-4">
+        <div className="space-y-4 mb-6">
           <div>
             <span className="inline-block rounded-full bg-teal-100 px-3 py-1 text-xs font-bold text-teal-700 mb-2">
               {phase.subtitle}
@@ -143,6 +152,24 @@ function PhaseCard({ phase, isHovered, setHovered }: any) {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Mobile Mockups */}
+        <div className="mt-8 pt-6 border-t border-teal-200/50">
+          <p className="text-xs font-semibold text-navy-800/60 uppercase tracking-wide mb-4">Preview Aplikasi</p>
+          <div className="flex gap-4 justify-center overflow-x-auto">
+            {phase.mockups.map((mockup, idx) => (
+              <div key={idx} className="flex-shrink-0 transform transition-transform hover:scale-110">
+                <PhoneMockup
+                  src={mockup.src}
+                  alt={mockup.label}
+                  type={mockup.type}
+                  className="scale-75 md:scale-90"
+                />
+                <p className="text-xs font-medium text-navy-800/60 text-center mt-2">{mockup.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Hover indicator */}
@@ -177,10 +204,15 @@ export default function RoadmapPage() {
               <p className="mx-auto max-w-2xl text-lg text-navy-800/60 leading-relaxed">
                 Perjalanan transformasi pembelajaran bahasa Jepang. Dari perintisan hingga ekosistem pembelajaran profesional dengan teknologi AI terdepan.
               </p>
-              <div className="pt-4 flex justify-center">
+              <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
                 <Link href="/#pricing">
                   <Button className="rounded-full bg-teal-400 px-8 text-white hover:bg-teal-500">
                     Download APK Fase 1
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button variant="outline" className="rounded-full border-teal-200 hover:bg-teal-50">
+                    Kembali ke Home
                   </Button>
                 </Link>
               </div>
@@ -199,6 +231,68 @@ export default function RoadmapPage() {
                 setHovered={setHoveredPhase}
               />
             ))}
+          </div>
+        </section>
+
+        {/* App Store Section */}
+        <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
+          <div className="rounded-3xl border-2 border-teal-200 bg-gradient-to-br from-teal-50 to-cyan-50 p-8 md:p-16 overflow-hidden relative">
+            {/* Background decoration */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-0 right-0 h-96 w-96 bg-teal-100/30 rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative space-y-8">
+              <div className="text-center space-y-3">
+                <div className="flex items-center justify-center gap-2 text-teal-600 font-semibold">
+                  <Sparkles className="h-5 w-5" />
+                  <span>Tersedia di Toko Aplikasi</span>
+                  <Sparkles className="h-5 w-5" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-navy-800">
+                  Download LuminaTalk Sekarang
+                </h2>
+                <p className="text-navy-800/60 text-lg">
+                  Dimulai dengan Fase 1 APK, berkembang ke Google Play & App Store
+                </p>
+              </div>
+
+              <div className="flex justify-center">
+                <AppStoreBadges />
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6 pt-8">
+                <div className="text-center space-y-2">
+                  <div className="inline-block rounded-full bg-teal-100 p-3">
+                    <svg className="h-6 w-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <p className="font-semibold text-navy-800">Instalasi Cepat</p>
+                  <p className="text-sm text-navy-800/60">Download & mulai belajar dalam hitungan detik</p>
+                </div>
+
+                <div className="text-center space-y-2">
+                  <div className="inline-block rounded-full bg-teal-100 p-3">
+                    <svg className="h-6 w-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <p className="font-semibold text-navy-800">Aman & Terpercaya</p>
+                  <p className="text-sm text-navy-800/60">Data Anda dilindungi dengan enkripsi tingkat tinggi</p>
+                </div>
+
+                <div className="text-center space-y-2">
+                  <div className="inline-block rounded-full bg-teal-100 p-3">
+                    <svg className="h-6 w-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <p className="font-semibold text-navy-800">Harga Terjangkau</p>
+                  <p className="text-sm text-navy-800/60">Paket premium dengan harga spesial untuk early adopters</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -281,16 +375,31 @@ export default function RoadmapPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* Final CTA Section */}
         <section className="mx-auto max-w-6xl px-6 py-12">
-          <div className="rounded-2xl bg-gradient-to-r from-teal-400 to-teal-500 p-8 md:p-12 text-center text-white space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Siap Memulai Perjalanan Anda?</h2>
-            <p className="text-lg text-white/90">Jadilah bagian dari 100 pengguna pertama dan nikmati promo launching eksklusif</p>
-            <Link href="/#pricing">
-              <Button className="rounded-full bg-white text-teal-500 hover:bg-white/90 px-8 text-lg font-bold shadow-lg">
-                Download APK Sekarang <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-navy-800 to-navy-900 p-8 md:p-12 text-center text-white space-y-6 border border-teal-400/30">
+            {/* Decorative background */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-0 left-10 h-40 w-40 bg-teal-400/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 right-10 h-40 w-40 bg-teal-400/10 rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative space-y-4">
+              <h2 className="text-3xl md:text-4xl font-bold">Siap Memulai Perjalanan Anda?</h2>
+              <p className="text-lg text-white/90">Jadilah bagian dari 100 pengguna pertama dan nikmati promo launching eksklusif</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <Link href="/">
+                  <Button className="rounded-full bg-teal-400 text-navy-800 hover:bg-teal-300 px-8 text-lg font-bold shadow-lg">
+                    Download APK Sekarang <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/#pricing">
+                  <Button variant="outline" className="rounded-full border-teal-400 text-teal-400 hover:bg-teal-400/10 px-8 text-lg font-bold">
+                    Lihat Paket Harga
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
       </main>
