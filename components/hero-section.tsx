@@ -4,67 +4,9 @@ import { PhoneMockup } from "@/components/phone-mockup"
 import { Button } from "@/components/ui/button"
 import { WaitingListForm } from "@/components/waiting-list-form"
 import { Download, Star, Zap, Bell } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-function Countdown() {
-  const [time, setTime] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  })
-
-  useEffect(() => {
-    const calculateTime = () => {
-      // Target: Next Saturday
-      const now = new Date()
-      const currentDay = now.getDay()
-      const daysUntilSaturday = (6 - currentDay + 7) % 7 || 7
-      
-      const target = new Date(now)
-      target.setDate(target.getDate() + daysUntilSaturday)
-      target.setHours(0, 0, 0, 0)
-
-      const diff = target.getTime() - now.getTime()
-
-      if (diff > 0) {
-        setTime({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((diff / 1000 / 60) % 60),
-          seconds: Math.floor((diff / 1000) % 60),
-        })
-      }
-    }
-
-    calculateTime()
-    const interval = setInterval(calculateTime, 1000)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="flex gap-3 justify-center">
-      {[
-        { label: "Hari", value: time.days },
-        { label: "Jam", value: time.hours },
-        { label: "Menit", value: time.minutes },
-        { label: "Detik", value: time.seconds },
-      ].map((item) => (
-        <div
-          key={item.label}
-          className="flex flex-col items-center gap-1 rounded-lg bg-gradient-to-br from-teal-50 to-teal-100 px-4 py-3 border border-teal-200 shadow-sm"
-        >
-          <div className="text-xl sm:text-2xl font-bold text-teal-600">
-            {String(item.value).padStart(2, "0")}
-          </div>
-          <div className="text-xs font-medium text-teal-600/70">{item.label}</div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export function HeroSection() {
+export function HeroSection({ onWaitingListOpen }: { onWaitingListOpen?: () => void }) {
   const [showWaitingList, setShowWaitingList] = useState(false)
 
   return (
@@ -99,26 +41,6 @@ export function HeroSection() {
             dan materi lengkap yang dirancang khusus untuk pelajar Indonesia.
           </p>
 
-          {/* Countdown Section */}
-          <div className="mt-8 w-full space-y-4 rounded-2xl border border-teal-100 bg-gradient-to-br from-white to-teal-50/30 p-6 backdrop-blur-sm">
-            <div className="space-y-2">
-              <h3 className="font-bold text-navy-800">⏰ Peluncuran Mobile App Fase 1</h3>
-              <p className="text-sm text-navy-800/60">Hari Sabtu - Jangan Lewatkan Promo Launching!</p>
-            </div>
-            <Countdown />
-            <div className="flex flex-col gap-2 pt-2 text-center">
-              <p className="text-xs font-semibold text-teal-600 uppercase tracking-wide">
-                ✨ Penawaran Eksklusif untuk 100 Pengguna Baru ✨
-              </p>
-              <p className="text-sm font-bold text-navy-800">
-                💰 Jangan Mulai Dari 39K - Dapatkan Paket Premium <span className="text-teal-500">dengan Harga Spesial</span>
-              </p>
-              <p className="text-xs text-navy-800/50 italic">
-                Terbatas hanya untuk early adopters selama fase peluncuran
-              </p>
-            </div>
-          </div>
-
           <div className="mt-8 flex flex-col gap-4 sm:flex-row w-full justify-center lg:justify-start">
             <Button
               asChild
@@ -131,12 +53,12 @@ export function HeroSection() {
               </a>
             </Button>
             <Button
+              asChild
+              variant="outline"
               size="lg"
-              onClick={() => setShowWaitingList(true)}
-              className="rounded-full border-2 border-teal-400 bg-white text-base font-bold text-teal-500 hover:bg-teal-50 shadow-lg shadow-teal-400/20"
+              className="rounded-full border-teal-200 bg-white/60 px-8 text-base font-bold text-navy-800 backdrop-blur-sm hover:bg-teal-50 hover:text-teal-500"
             >
-              <Bell className="mr-2 h-5 w-5" />
-              Waiting List
+              <a href="#features">Lihat Fitur</a>
             </Button>
           </div>
 
@@ -199,8 +121,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-
-      <WaitingListForm isOpen={showWaitingList} onClose={() => setShowWaitingList(false)} />
     </section>
   )
 }

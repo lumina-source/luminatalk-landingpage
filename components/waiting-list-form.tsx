@@ -184,7 +184,7 @@ export function WaitingListForm({ isOpen, onClose }: WaitingListFormProps) {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-navy-800">Waiting List</h2>
-              <p className="text-sm text-navy-800/60 mt-1">Jadilah bagian dari 100 pengguna pertama</p>
+              <p className="text-sm text-navy-800/60 mt-1">Jadilah bagian dari 200 pengguna pertama</p>
             </div>
             <button
               onClick={onClose}
