@@ -39,6 +39,7 @@ export function Navbar() {
             width={48}
             height={48}
             className="rounded-xl"
+            style={{ width: "auto", height: "auto" }}
           />
           <span className="text-xl font-bold text-navy-800">
             Lumina<span className="text-teal-400">Talk</span>
@@ -60,7 +61,7 @@ export function Navbar() {
             asChild
             className="rounded-full bg-teal-400 px-6 text-white hover:bg-teal-500"
           >
-            <a href="#pricing">Download Sekarang</a>
+            <a href="/roadmap">Roadmap</a>
           </Button>
         </div>
 
@@ -92,7 +93,7 @@ export function Navbar() {
               asChild
               className="mt-2 w-full rounded-full bg-teal-400 text-white hover:bg-teal-500"
             >
-              <a href="#pricing" onClick={() => setMobileOpen(false)}>Download Sekarang</a>
+              <a href="/roadmap" onClick={() => setMobileOpen(false)}>Roadmap</a>
             </Button>
           </div>
         </div>

@@ -2,7 +2,66 @@
 
 import { PhoneMockup } from "@/components/phone-mockup"
 import { Button } from "@/components/ui/button"
-import { Download, Star } from "lucide-react"
+import { Download, Star, Zap } from "lucide-react"
+import { useEffect, useState } from "react"
+
+function Countdown() {
+  const [time, setTime] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
+
+  useEffect(() => {
+    const calculateTime = () => {
+      // Target: Next Saturday
+      const now = new Date()
+      const currentDay = now.getDay()
+      const daysUntilSaturday = (6 - currentDay + 7) % 7 || 7
+      
+      const target = new Date(now)
+      target.setDate(target.getDate() + daysUntilSaturday)
+      target.setHours(0, 0, 0, 0)
+
+      const diff = target.getTime() - now.getTime()
+
+      if (diff > 0) {
+        setTime({
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((diff / 1000 / 60) % 60),
+          seconds: Math.floor((diff / 1000) % 60),
+        })
+      }
+    }
+
+    calculateTime()
+    const interval = setInterval(calculateTime, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="flex gap-3 justify-center">
+      {[
+        { label: "Hari", value: time.days },
+        { label: "Jam", value: time.hours },
+        { label: "Menit", value: time.minutes },
+        { label: "Detik", value: time.seconds },
+      ].map((item) => (
+        <div
+          key={item.label}
+          className="flex flex-col items-center gap-1 rounded-lg bg-gradient-to-br from-teal-50 to-teal-100 px-4 py-3 border border-teal-200 shadow-sm"
+        >
+          <div className="text-xl sm:text-2xl font-bold text-teal-600">
+            {String(item.value).padStart(2, "0")}
+          </div>
+          <div className="text-xs font-medium text-teal-600/70">{item.label}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export function HeroSection() {
   return (
@@ -17,10 +76,10 @@ export function HeroSection() {
       <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 lg:flex-row lg:gap-16">
         {/* Left content */}
         <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white/80 px-4 py-2 shadow-sm backdrop-blur-sm">
-            <Star className="h-4 w-4 fill-teal-400 text-teal-400" />
-            <span className="text-sm font-semibold text-navy-800">
-              Aplikasi Belajar Jepang #1
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50/80 px-4 py-2 shadow-sm backdrop-blur-sm">
+            <Zap className="h-4 w-4 fill-amber-500 text-amber-500" />
+            <span className="text-sm font-semibold text-amber-900">
+              🎉 Peluncuran Fase 1 Segera Dimulai!
             </span>
           </div>
 
@@ -37,7 +96,27 @@ export function HeroSection() {
             dan materi lengkap yang dirancang khusus untuk pelajar Indonesia.
           </p>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          {/* Countdown Section */}
+          <div className="mt-8 w-full space-y-4 rounded-2xl border border-teal-100 bg-gradient-to-br from-white to-teal-50/30 p-6 backdrop-blur-sm">
+            <div className="space-y-2">
+              <h3 className="font-bold text-navy-800">⏰ Peluncuran Mobile App Fase 1</h3>
+              <p className="text-sm text-navy-800/60">Hari Sabtu - Jangan Lewatkan Promo Launching!</p>
+            </div>
+            <Countdown />
+            <div className="flex flex-col gap-2 pt-2 text-center">
+              <p className="text-xs font-semibold text-teal-600 uppercase tracking-wide">
+                ✨ Penawaran Eksklusif untuk 100 Pengguna Baru ✨
+              </p>
+              <p className="text-sm font-bold text-navy-800">
+                💰 Jangan Mulai Dari 39K - Dapatkan Paket Premium <span className="text-teal-500">dengan Harga Spesial</span>
+              </p>
+              <p className="text-xs text-navy-800/50 italic">
+                Terbatas hanya untuk early adopters selama fase peluncuran
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row w-full justify-center lg:justify-start">
             <Button
               asChild
               size="lg"
