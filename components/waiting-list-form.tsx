@@ -133,7 +133,7 @@ export function WaitingListForm({ isOpen, onClose }: WaitingListFormProps) {
 ---
 📱 Promo Early Access untuk 200 pengguna pertama
 💰 Jangan mulai dari 39K - dapatkan harga spesial!
-⏰ Peluncuran Fase 1: Hari Sabtu
+⏰ Peluncuran Fase 1: Hari Minggu
       `.trim()
 
       // Send via WhatsApp using WhatsApp Business API format
