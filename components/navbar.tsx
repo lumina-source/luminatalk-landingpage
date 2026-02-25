@@ -36,10 +36,10 @@ export function Navbar() {
           <Image
             src="/images/logo.jpeg"
             alt="LuminaTalk Logo"
-            width={48}
-            height={48}
-            className="rounded-xl"
-            style={{ width: "auto", height: "auto" }}
+            width={32}
+            height={32}
+            className="rounded-lg"
+            priority
           />
           <span className="text-xl font-bold text-navy-800">
             Lumina<span className="text-teal-400">Talk</span>
