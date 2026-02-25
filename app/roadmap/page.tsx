@@ -1,11 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Button } from '@/components/ui/button'
+import { PhaseDetailModal } from '@/components/phase-detail-modal'
 import Image from 'next/image'
 import Link from 'next/link'
-import { CheckCircle2, Rocket, Store, Zap, Trophy, ArrowRight, Sparkles } from 'lucide-react'
+import { CheckCircle2, Rocket, Store, Zap, Trophy, ArrowRight, Sparkles, Info } from 'lucide-react'
 
 const phases = [
   {
@@ -21,6 +23,15 @@ const phases = [
       'AI Voice Practice interaktif',
       'Materi N5-N4 lengkap'
     ],
+    detailedInfo: `Saat ini, LuminaTalk berada dalam Fase 1 (Early Access). Kami memilih distribusi melalui file APK (Sideload) untuk membangun komunitas inti dan mendapatkan masukan langsung dari Anda sebelum peluncuran resmi di Google Play Store pada Fase 2. Hal ini memungkinkan kami memberikan harga langganan yang jauh lebih terjangkau bagi para perintis aplikasi ini.
+
+Dalam fase ini, kami fokus pada:
+- Membangun fondasi pembelajaran yang kuat dengan materi N5 hingga N4
+- Mengintegrasikan AI Voice Practice untuk membantu Anda menguasai pelafalan yang tepat
+- Menyediakan sistem pembayaran yang transparan dan mudah melalui WhatsApp
+- Mengumpulkan feedback berharga dari pengguna awal untuk penyempurnaan berkelanjutan
+
+Dengan bergabung sebagai pengguna awal di Fase 1, Anda bukan hanya mendapatkan harga spesial yang jauh lebih murah dari harga normal, tetapi juga menjadi bagian dari perjalanan membangun ekosistem pembelajaran bahasa Jepang yang revolusioner. Dukungan Anda di fase kritis ini sangat penting untuk kesuksesan jangka panjang LuminaTalk.`,
     image: '/images/playstore.png',
     imageAlt: 'LuminaTalk Phase 1'
   },
@@ -37,6 +48,15 @@ const phases = [
       'E-wallet & Credit Card',
       'Jangkauan pengguna luas'
     ],
+    detailedInfo: `Fase 2 merupakan momentum ekspansi besar-besaran LuminaTalk ke pasar yang lebih luas melalui Google Play Store. Dengan kehadiran di toko aplikasi resmi, kami akan mencapai jutaan pembelajaran potensial di Indonesia dan negara Asia Tenggara.
+
+Inovasi utama di fase ini:
+- Integrasi Gateway Pembayaran Otomatis untuk kemudahan transaksi
+- Dukungan berbagai metode pembayaran (E-wallet, Virtual Account, Credit Card)
+- Sistem subscription otomatis yang fleksibel
+- Peningkatan infrastruktur untuk mendukung jutaan pengguna
+
+Fase ini menandai transisi dari komunitas inti ke adopsi massal, dengan tetap menjaga kualitas layanan dan support pengguna yang telah kami bangun sejak Fase 1.`,
     image: '/images/appstore.png',
     imageAlt: 'LuminaTalk Phase 2'
   },
@@ -53,6 +73,15 @@ const phases = [
       'Simulasi JLPT & JFT',
       'Apple App Store (iOS)'
     ],
+    detailedInfo: `Fase 3 adalah transformasi LuminaTalk menjadi asisten belajar berbasis kecerdasan buatan yang paling canggih. Di fase ini, kami menghadirkan teknologi AI yang benar-benar mengubah cara Anda belajar bahasa Jepang.
+
+Fitur revolusioner di Fase 3:
+- LuminaVoice: Percakapan interaktif dengan AI yang terdengar alami dan responsif
+- LuminaChat: Asisten AI yang memahami konteks dan memberikan penjelasan grammar yang mendalam
+- Simulasi JLPT & JFT: Tryout lengkap dengan sistem scoring internasional untuk mempersiapkan sertifikasi
+- Peluncuran di Apple App Store: Membuka akses bagi pengguna iOS di seluruh dunia
+
+Fase ini menghadirkan pengalaman pembelajaran yang dipersonalisasi sesuai kecepatan dan gaya belajar individual Anda.`,
     image: '/images/playstore.png',
     imageAlt: 'LuminaTalk Phase 3'
   },
@@ -69,16 +98,26 @@ const phases = [
       'Job placement assistance',
       'Mentorship premium'
     ],
+    detailedInfo: `Fase 4 adalah puncak dari perjalanan LuminaTalk, di mana kami menjadi ekosistem pembelajaran bahasa Jepang yang paling komprehensif dan terpercaya. Fase ini dirancang untuk membawa Anda dari level pemula hingga profesional yang siap karir di Jepang.
+
+Pencapaian utama di Fase 4:
+- Materi Level Advanced N2 & N1 yang mendalam dan komprehensif
+- Modul E-Book SSW (Specified Skilled Worker) untuk persiapan kerja profesional
+- Bank soal teknis khusus untuk berbagai bidang karir di Jepang
+- Program Mentorship Premium dengan native speakers dan profesional berpengalaman
+- Job Placement Assistance untuk membantu Anda menemukan peluang kerja di Jepang
+
+Fase ini mengubah LuminaTalk dari aplikasi pembelajaran menjadi jembatan menuju kesuksesan karir internasional Anda.`,
     image: '/images/appstore.png',
     imageAlt: 'LuminaTalk Phase 4'
   }
 ]
 
-function PhaseCard({ phase }: any) {
+function PhaseCard({ phase, onDetailClick }: any) {
   const Icon = phase.icon
   
   return (
-    <div className="group relative rounded-2xl border-2 border-teal-100 bg-gradient-to-br from-white to-teal-50/50 p-5 md:p-6 transition-all duration-300 hover:border-teal-200 hover:shadow-lg overflow-hidden">
+    <div className="group relative rounded-2xl border-2 border-teal-100 bg-gradient-to-br from-white to-teal-50/50 p-5 md:p-6 transition-all duration-300 hover:border-teal-200 hover:shadow-lg overflow-hidden cursor-pointer" onClick={onDetailClick}>
       {/* Status Badge */}
       <div className={`absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-gradient-to-r ${phase.statusColor} px-3 py-1 text-white text-xs font-bold uppercase tracking-wide shadow-md`}>
         <div className={`inline-block h-1.5 w-1.5 rounded-full bg-white ${phase.status === 'LIVE NOW' ? 'animate-pulse' : ''}`} />
@@ -121,21 +160,37 @@ function PhaseCard({ phase }: any) {
         />
       </div>
 
-      {/* CTA Button */}
-      <Button
-        asChild
-        size="sm"
-        className="w-full rounded-lg bg-teal-400 text-white hover:bg-teal-500 text-xs md:text-sm"
-      >
-        <a href={phase.id === 1 ? 'https://drive.google.com/drive/folders/1JsSOKgWPijbgt4fC3Xgqt1wT_C5aG46q?usp=sharing' : '#'}>
-          {phase.status === 'LIVE NOW' ? 'Download APK' : 'Coming Soon'}
-        </a>
-      </Button>
+      {/* CTA Buttons */}
+      <div className="space-y-2">
+        <Button
+          size="sm"
+          className="w-full rounded-lg bg-teal-400 text-white hover:bg-teal-500 text-xs md:text-sm"
+          onClick={(e) => {
+            e.stopPropagation()
+            onDetailClick()
+          }}
+        >
+          <Info className="mr-1 h-3 w-3" />
+          Pelajari Detail
+        </Button>
+        <Button
+          asChild
+          size="sm"
+          variant="outline"
+          className="w-full rounded-lg border-teal-200 text-xs md:text-sm"
+        >
+          <a href={phase.id === 1 ? 'https://drive.google.com/drive/folders/1JsSOKgWPijbgt4fC3Xgqt1wT_C5aG46q?usp=sharing' : '#'} onClick={(e) => phase.id !== 1 && e.preventDefault()}>
+            {phase.status === 'LIVE NOW' ? 'Download APK' : 'Coming Soon'}
+          </a>
+        </Button>
+      </div>
     </div>
   )
 }
 
 export default function RoadmapPage() {
+  const [selectedPhase, setSelectedPhase] = useState<(typeof phases)[0] | null>(null)
+
   return (
     <div className="min-h-screen bg-background font-sans">
       <Navbar />
@@ -170,7 +225,11 @@ export default function RoadmapPage() {
         <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {phases.map((phase) => (
-              <PhaseCard key={phase.id} phase={phase} />
+              <PhaseCard 
+                key={phase.id} 
+                phase={phase}
+                onDetailClick={() => setSelectedPhase(phase)}
+              />
             ))}
           </div>
         </section>
@@ -272,8 +331,15 @@ export default function RoadmapPage() {
           </div>
         </section>
       </main>
-
       <Footer />
+      
+      {selectedPhase && (
+        <PhaseDetailModal
+          isOpen={!!selectedPhase}
+          onClose={() => setSelectedPhase(null)}
+          phase={selectedPhase}
+        />
+      )}
     </div>
   )
 }
