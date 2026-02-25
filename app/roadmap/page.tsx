@@ -175,6 +175,84 @@ export default function RoadmapPage() {
           </div>
         </section>
 
+        {/* Founder's Note Section */}
+        <section className="relative overflow-hidden py-12 md:py-20 px-6">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-teal-100/10 blur-3xl" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl">
+            <div className="rounded-3xl border-2 border-navy-800/10 bg-gradient-to-br from-navy-800/5 to-teal-400/5 p-8 md:p-16 backdrop-blur-sm">
+              
+              {/* Quote */}
+              <div className="mb-12 text-center space-y-4">
+                <p className="text-2xl md:text-3xl italic font-serif text-navy-800 text-balance">
+                  "Belajar bahasa baru bukan sekadar menghafal kata, melainkan membuka jendela menuju dunia yang baru."
+                </p>
+              </div>
+
+              {/* Content Layout */}
+              <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-start">
+                {/* Photo - Left */}
+                <div className="md:col-span-1 flex justify-center">
+                  <div className="relative">
+                    <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-teal-200 to-teal-100 opacity-30 blur-lg" />
+                    <div className="relative rounded-3xl overflow-hidden border-4 border-teal-300 shadow-xl">
+                      <Image
+                        src="/images/ben-wijaya.jpeg"
+                        alt="Ben Wijaya - Founder"
+                        width={300}
+                        height={400}
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Text - Right */}
+                <div className="md:col-span-2 space-y-6">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-navy-800 mb-2">
+                      Pesan dari Pendiri
+                    </h2>
+                    <div className="h-1 w-16 bg-gradient-to-r from-teal-400 to-teal-300 rounded-full" />
+                  </div>
+
+                  <div className="space-y-4 text-navy-800/70 leading-relaxed text-lg">
+                    <p>
+                      Halo, saya <span className="font-semibold text-navy-800">Ben Wijaya</span>, Pendiri LuminaTalk.
+                    </p>
+
+                    <p>
+                      LuminaTalk lahir dari sebuah keresahan sederhana: Mengapa belajar bahasa Jepang yang begitu indah harus terasa begitu rumit dan mahal? Saya melihat banyak pembelajar berbakat menyerah di tengah jalan karena merasa tersesat dalam kurikulum yang kaku atau tidak memiliki teman untuk berlatih bicara.
+                    </p>
+
+                    <p>
+                      Roadmap yang Anda lihat di atas bukan sekadar rencana bisnis, melainkan janji dan komitmen saya kepada Anda. Saya ingin LuminaTalk menjadi sahabat setia yang menemani setiap coretan Kanji Anda, setiap kegagalan pelafalan Anda, hingga hari di mana Anda berdiri dengan percaya diri di tengah hiruk pikuk Tokyo.
+                    </p>
+
+                    <p>
+                      Kami memulai perjalanan ini secara bertahap, dari sistem manual yang personal hingga kecanggihan AI yang futuristik. Terima kasih telah menjadi bagian dari sejarah awal LuminaTalk. Dukungan Anda di fase awal ini adalah bahan bakar utama kami untuk terus berinovasi dan menyempurnakan setiap fitur.
+                    </p>
+
+                    <p className="text-base italic text-teal-500 font-medium">
+                      Mari kita taklukkan batasan bahasa, dan raih mimpi Anda di Negeri Sakura bersama-sama.
+                    </p>
+                  </div>
+
+                  <div className="pt-4 space-y-2">
+                    <p className="font-bold text-navy-800">Selamat belajar,</p>
+                    <div>
+                      <p className="font-bold text-lg text-teal-400">Ben Wijaya</p>
+                      <p className="text-sm text-navy-800/60">Founder, LuminaTalk</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="mx-auto max-w-7xl px-6 py-8 md:py-12">
           <div className="rounded-2xl bg-gradient-to-r from-navy-800 to-navy-900 p-6 md:p-10 text-center text-white border border-teal-400/30">

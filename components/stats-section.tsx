@@ -1,7 +1,13 @@
-import { Users, BookOpen, Award, Globe } from "lucide-react"
+import { BookOpen, Award, Globe } from "lucide-react"
+
+const KanjiIcon = () => (
+  <svg className="h-7 w-7 text-teal-300" fill="currentColor" viewBox="0 0 24 24">
+    <text x="2" y="20" fontSize="20" fontWeight="bold">漢</text>
+  </svg>
+)
 
 const stats = [
-  { icon: Users, value: "10,000+", label: "Pengguna Aktif" },
+  { icon: KanjiIcon, value: "10,000+", label: "Kosakata & Kanji" },
   { icon: BookOpen, value: "5,000+", label: "Materi Pelajaran" },
   { icon: Award, value: "N5-N1", label: "Level JLPT" },
   { icon: Globe, value: "100%", label: "Bahasa Indonesia" },

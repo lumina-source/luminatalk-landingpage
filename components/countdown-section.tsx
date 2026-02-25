@@ -16,11 +16,11 @@ function CountdownTimer() {
     const calculateTime = () => {
       const now = new Date()
       const currentDay = now.getDay()
-      const daysUntilSaturday = (6 - currentDay + 7) % 7 || 7
+      const daysUntilSunday = (0 - currentDay + 7) % 7 || 7
 
       const target = new Date(now)
-      target.setDate(target.getDate() + daysUntilSaturday)
-      target.setHours(0, 0, 0, 0)
+      target.setDate(target.getDate() + daysUntilSunday)
+      target.setHours(15, 0, 0, 0)
 
       const diff = target.getTime() - now.getTime()
 
@@ -80,7 +80,7 @@ export function CountdownSection({ onWaitingListClick }: CountdownSectionProps) 
             </div>
             <div className="flex flex-col gap-1">
               <h2 className="text-xl md:text-2xl font-bold text-navy-800">
-                Hari Sabtu - Jangan Lewatkan!
+                Minggu Jam 15:00 WIB - Jangan Lewatkan!
               </h2>
               <p className="text-sm md:text-base text-navy-800/60">
                 ✨ Penawaran Eksklusif untuk 200 Pengguna Pertama ✨

@@ -32,7 +32,7 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2">
           <Image
             src="/images/logo.jpeg"
             alt="LuminaTalk Logo"

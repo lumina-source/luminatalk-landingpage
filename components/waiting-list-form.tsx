@@ -22,7 +22,7 @@ function SuccessModal({ isVisible, onClose }: { isVisible: boolean; onClose: () 
   if (!isVisible) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm pt-20">
       <div className="relative rounded-3xl bg-white p-8 md:p-12 max-w-md w-full mx-4 shadow-2xl animate-in fade-in zoom-in duration-300">
         {/* Close button */}
         <button
@@ -137,7 +137,7 @@ export function WaitingListForm({ isOpen, onClose }: WaitingListFormProps) {
       `.trim()
 
       // Send via WhatsApp using WhatsApp Business API format
-      const adminNumber = '081246380454'
+      const adminNumber = '6281246380454'
       const encodedMessage = encodeURIComponent(message)
       const whatsappUrl = `https://wa.me/${adminNumber}?text=${encodedMessage}`
 
