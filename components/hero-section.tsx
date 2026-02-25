@@ -69,7 +69,7 @@ export function HeroSection({ onWaitingListOpen }: { onWaitingListOpen?: () => v
               ))}
             </div>
             <span className="text-sm font-medium text-navy-800/60">
-              {'4.9 Rating dari 1000+ pengguna'}
+              {'4.9 Rating dari 100+ pengguna awal'}
             </span>
           </div>
 

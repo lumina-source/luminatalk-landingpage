@@ -8,7 +8,7 @@ const KanjiIcon = () => (
 
 const stats = [
   { icon: KanjiIcon, value: "10,000+", label: "Kosakata & Kanji" },
-  { icon: BookOpen, value: "5,000+", label: "Materi Pelajaran" },
+  { icon: BookOpen, value: "100+", label: "Materi Pelajaran" },
   { icon: Award, value: "N5-N1", label: "Level JLPT" },
   { icon: Globe, value: "100%", label: "Bahasa Indonesia" },
 ]
