@@ -10,6 +10,7 @@ import { ScreenshotsSection } from "@/components/screenshots-section"
 import { StatsSection } from "@/components/stats-section"
 import { PricingSection } from "@/components/pricing-section"
 import { FaqSection } from "@/components/faq-section"
+import { ArticlesSection } from "@/components/articles-section"
 import { CtaSection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 
@@ -21,16 +22,17 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
-        <CountdownSection onWaitingListClick={() => setShowWaitingList(true)} />
+        {/* <CountdownSection onWaitingListClick={() => setShowWaitingList(true)} /> */}
         <StatsSection />
         <FeaturesSection />
         <ScreenshotsSection />
         <PricingSection />
         <FaqSection />
+        <ArticlesSection />
         <CtaSection />
       </main>
       <Footer />
-      <WaitingListForm isOpen={showWaitingList} onClose={() => setShowWaitingList(false)} />
+      {/* <WaitingListForm isOpen={showWaitingList} onClose={() => setShowWaitingList(false)} /> */}
     </div>
   )
 }

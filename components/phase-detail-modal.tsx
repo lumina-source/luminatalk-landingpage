@@ -19,8 +19,8 @@ export function PhaseDetailModal({ isOpen, onClose, phase }: PhaseDetailModalPro
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/50 backdrop-blur-sm overflow-y-auto">
-      <div className="w-full max-w-2xl mx-4 my-8 rounded-3xl bg-white p-8 md:p-12 shadow-2xl animate-in fade-in zoom-in duration-300">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm overflow-y-auto pt-20 pb-8">
+      <div className="w-full max-w-2xl mx-4 rounded-3xl bg-white p-6 md:p-10 shadow-2xl animate-in fade-in zoom-in duration-300">
         {/* Close button */}
         <button
           onClick={onClose}

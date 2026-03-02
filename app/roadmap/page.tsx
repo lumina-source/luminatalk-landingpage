@@ -16,22 +16,23 @@ const phases = [
     status: 'LIVE NOW',
     statusColor: 'from-green-400 to-emerald-500',
     icon: Rocket,
-    description: 'Peluncuran perdana LuminaTalk melalui distribusi APK untuk komunitas pembelajar awal.',
+    description: 'Peluncuran perdana LuminaTalk dengan fondasi pembelajaran N5 hingga N3 tanpa AI.',
     features: [
-      'Sideload manual aman terenkripsi',
-      'Pembayaran Manual via WhatsApp Admin',
-      'AI Voice Practice interaktif',
-      'Materi N5-N4 lengkap'
+      'Materi pembelajaran N5-N3 lengkap',
+      'Kanji & Hiragana practice interaktif',
+      'Vocabulary quiz dan grammar lessons',
+      'Akses gratis tanpa biaya subscription'
     ],
-    detailedInfo: `Saat ini, LuminaTalk berada dalam Fase 1 (Early Access). Kami memilih distribusi melalui file APK (Sideload) untuk membangun komunitas inti dan mendapatkan masukan langsung dari Anda sebelum peluncuran resmi di Google Play Store pada Fase 2. Hal ini memungkinkan kami memberikan harga langganan yang jauh lebih terjangkau bagi para perintis aplikasi ini.
+    detailedInfo: `Saat ini, LuminaTalk berada dalam Fase 1 (Early Access). Kami membangun fondasi pembelajaran bahasa Jepang yang kuat dengan fokus pada level N5 hingga N3, yang merupakan dasar penting untuk semua pelajar pemula.
 
-Dalam fase ini, kami fokus pada:
-- Membangun fondasi pembelajaran yang kuat dengan materi N5 hingga N4
-- Mengintegrasikan AI Voice Practice untuk membantu Anda menguasai pelafalan yang tepat
-- Menyediakan sistem pembayaran yang transparan dan mudah melalui WhatsApp
-- Mengumpulkan feedback berharga dari pengguna awal untuk penyempurnaan berkelanjutan
+Fitur utama Fase 1:
+- Materi pembelajaran N5 hingga N3 yang komprehensif dan terstruktur dengan baik
+- Practice kanji dengan sistem stroke-by-stroke untuk memahami setiap karakter dengan detail
+- Quiz vocabulary interaktif untuk memperkuat penguasaan kosakata sehari-hari
+- Lessons grammar yang mudah dipahami dengan contoh kontekstual
+- Sistem pembelajaran yang intuitif dan user-friendly tanpa kompleksitas AI
 
-Dengan bergabung sebagai pengguna awal di Fase 1, Anda bukan hanya mendapatkan harga spesial yang jauh lebih murah dari harga normal, tetapi juga menjadi bagian dari perjalanan membangun ekosistem pembelajaran bahasa Jepang yang revolusioner. Dukungan Anda di fase kritis ini sangat penting untuk kesuksesan jangka panjang LuminaTalk.`,
+Fase 1 dirancang untuk memberikan akses pembelajaran berkualitas tinggi kepada semua orang tanpa biaya, membangun komunitas pembelajar yang solid, dan mengumpulkan feedback untuk pengembangan fitur lanjutan di fase-fase mendatang. Pembelajaran dasar yang kuat di fase ini adalah kunci menuju kesuksesan Anda di level JLPT yang lebih tinggi.`,
     image: '/images/playstore.png',
     imageAlt: 'LuminaTalk Phase 1'
   },
