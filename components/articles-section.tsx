@@ -186,63 +186,65 @@ export function ArticlesSection() {
           onClick={() => setSelectedArticle(null)}
         >
           <div
-            className="bg-white rounded-3xl max-w-2xl w-full p-6 md:p-10 shadow-2xl animate-in fade-in zoom-in duration-300 my-8"
+            className="bg-white rounded-2xl max-w-lg w-full shadow-2xl animate-in fade-in zoom-in duration-300 max-h-[90vh] overflow-hidden flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setSelectedArticle(null)}
-              className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <X className="h-6 w-6 text-gray-500" />
-            </button>
-
-            <div className="relative h-64 -mx-10 mb-8 overflow-hidden rounded-t-3xl">
+            {/* Image Header */}
+            <div className="relative h-40 overflow-hidden bg-gray-100">
               <Image
                 src={selectedArticle.image}
                 alt={selectedArticle.title}
                 fill
                 className="object-cover"
               />
-              <div className="absolute top-4 left-4">
-                <span className="inline-block rounded-full bg-teal-400 text-white text-sm font-bold px-3 py-1">
+              <button
+                onClick={() => setSelectedArticle(null)}
+                className="absolute top-2 right-2 p-1.5 bg-white/90 hover:bg-white rounded-full transition-colors z-10"
+              >
+                <X className="h-5 w-5 text-gray-600" />
+              </button>
+              <div className="absolute bottom-3 left-3">
+                <span className="inline-block rounded-full bg-teal-400 text-white text-xs font-bold px-2 py-1">
                   {selectedArticle.category}
                 </span>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <h1 className="text-3xl md:text-4xl font-bold text-navy-800">
+            {/* Content */}
+            <div className="overflow-y-auto flex-1 p-5 md:p-6 space-y-4">
+              <div className="space-y-2">
+                <h1 className="text-xl md:text-2xl font-bold text-navy-800 line-clamp-3">
                   {selectedArticle.title}
                 </h1>
-                <div className="flex flex-wrap items-center gap-4 text-sm text-navy-800/60 border-b border-gray-200 pb-4">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
+                <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm text-navy-800/60 border-b border-gray-200 pb-3">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5" />
                     <span>{selectedArticle.date} • {selectedArticle.time}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
+                  <div className="flex items-center gap-1">
+                    <User className="h-3.5 w-3.5" />
                     <span>LuminaTalk Team</span>
                   </div>
                 </div>
               </div>
 
-              <div className="prose prose-sm max-w-none space-y-4 text-navy-800/80 leading-relaxed">
+              <div className="space-y-3 text-navy-800/80 leading-relaxed">
                 {selectedArticle.content.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="text-base">
+                  <p key={idx} className="text-sm md:text-base">
                     {paragraph}
                   </p>
                 ))}
               </div>
+            </div>
 
-              <div className="flex justify-end pt-6 border-t">
-                <Button
-                  onClick={() => setSelectedArticle(null)}
-                  className="rounded-lg bg-teal-400 text-white hover:bg-teal-500 px-6"
-                >
-                  Tutup
-                </Button>
-              </div>
+            {/* Close Button - Fixed at bottom */}
+            <div className="flex justify-end gap-2 p-4 md:p-5 border-t bg-white sticky bottom-0">
+              <Button
+                onClick={() => setSelectedArticle(null)}
+                className="rounded-lg bg-teal-400 text-white hover:bg-teal-500 px-5 py-2 text-sm"
+              >
+                Tutup
+              </Button>
             </div>
           </div>
         </div>
