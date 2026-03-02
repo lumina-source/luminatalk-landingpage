@@ -126,7 +126,7 @@ export function ArticlesSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((article) => (
+            {articles.slice(0, 6).map((article) => (
               <article
                 key={article.id}
                 onClick={() => setSelectedArticle(article)}
@@ -175,6 +175,14 @@ export function ArticlesSection() {
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a href="/blog">
+              <Button className="rounded-full bg-teal-400 text-white hover:bg-teal-500 px-8 py-2">
+                Lihat Semua Artikel
+              </Button>
+            </a>
           </div>
         </div>
       </section>
