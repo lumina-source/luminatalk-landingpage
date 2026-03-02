@@ -83,12 +83,12 @@ export default function ArticlePage() {
         <Navbar />
         <main className="pt-40 px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl font-bold text-navy-800 mb-4">Artikel tidak ditemukan</h1>
-            <p className="text-navy-800/60 mb-8">Maaf, artikel yang Anda cari tidak tersedia.</p>
+            <h1 className="text-3xl font-bold text-[--color-navy-800] mb-4">Artikel tidak ditemukan</h1>
+            <p className="text-[--color-navy-800]/60 mb-8">Maaf, artikel yang Anda cari tidak tersedia.</p>
             <Link href="/blog">
-              <Button className="bg-teal-400 text-white hover:bg-teal-500">
+              <button className="bg-[--color-teal-400] text-white hover:bg-[--color-teal-500] px-6 py-2 rounded-lg font-medium transition-colors">
                 Kembali ke Blog
-              </Button>
+              </button>
             </Link>
           </div>
         </main>
@@ -109,12 +109,12 @@ export default function ArticlePage() {
         {/* Hero Section */}
         <section className="relative overflow-hidden py-12 md:py-16 px-6">
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute top-0 left-10 h-96 w-96 rounded-full bg-teal-100/20 blur-3xl" />
+            <div className="absolute top-0 left-10 h-96 w-96 rounded-full bg-[--color-teal-100]/20 blur-3xl" />
           </div>
 
           <div className="relative mx-auto max-w-4xl">
             {/* Back Button */}
-            <Link href="/blog" className="inline-flex items-center gap-2 text-teal-400 hover:text-teal-500 mb-6">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-[--color-teal-400] hover:text-[--color-teal-500] mb-6">
               <ArrowLeft className="h-4 w-4" />
               Kembali ke Blog
             </Link>
@@ -125,13 +125,13 @@ export default function ArticlePage() {
                 <span className={`inline-block rounded-full text-sm font-bold px-4 py-1.5 mb-4 ${categoryColors[article.category as keyof typeof categoryColors]}`}>
                   {categoryLabels[article.category as keyof typeof categoryLabels]}
                 </span>
-                <h1 className="text-4xl md:text-5xl font-bold text-navy-800 mb-4">
+                <h1 className="text-4xl md:text-5xl font-bold text-[--color-navy-800] mb-4">
                   {article.title}
                 </h1>
               </div>
 
               {/* Meta Info */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-navy-800/60 border-b border-navy-800/10 pb-6">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-[--color-navy-800]/60 border-b border-[--color-navy-800]/10 pb-6">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   <span>{article.author}</span>
@@ -162,22 +162,22 @@ export default function ArticlePage() {
               <div className="space-y-8">
                 {article.sections.map((section) => (
                   <div key={section.id} className="space-y-4">
-                    <h2 className="text-3xl font-bold text-navy-800 mt-8 mb-4">
+                    <h2 className="text-3xl font-bold text-[--color-navy-800] mt-8 mb-4">
                       {section.title}
                     </h2>
 
-                    <div className="text-navy-800/70 whitespace-pre-wrap leading-relaxed">
+                    <div className="text-[--color-navy-800]/70 whitespace-pre-wrap leading-relaxed">
                       {section.content}
                     </div>
 
                     {section.subsections && section.subsections.length > 0 && (
-                      <div className="space-y-6 mt-6 ml-4 border-l-4 border-teal-400 pl-6">
+                      <div className="space-y-6 mt-6 ml-4 border-l-4 border-[--color-teal-400] pl-6">
                         {section.subsections.map((subsection) => (
                           <div key={subsection.id} className="space-y-2">
-                            <h3 className="text-xl font-bold text-navy-800">
+                            <h3 className="text-xl font-bold text-[--color-navy-800]">
                               {subsection.title}
                             </h3>
-                            <div className="text-navy-800/70 whitespace-pre-wrap leading-relaxed">
+                            <div className="text-[--color-navy-800]/70 whitespace-pre-wrap leading-relaxed">
                               {subsection.content}
                             </div>
                           </div>
@@ -190,10 +190,10 @@ export default function ArticlePage() {
             </article>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-16 pb-8 border-b border-navy-800/10">
+            <div className="flex flex-wrap gap-2 mb-16 pb-8 border-b border-[--color-navy-800]/10">
               {article.tags.map((tag) => (
                 <Link key={tag} href={`/blog?search=${tag}`}>
-                  <span className="inline-block rounded-full bg-teal-50 text-teal-700 px-3 py-1 text-sm hover:bg-teal-100 transition-colors cursor-pointer border border-teal-200">
+                  <span className="inline-block rounded-full bg-[--color-teal-50] text-[--color-teal-700] px-3 py-1 text-sm hover:bg-[--color-teal-100] transition-colors cursor-pointer border border-[--color-teal-200]">
                     #{tag}
                   </span>
                 </Link>
@@ -204,13 +204,13 @@ export default function ArticlePage() {
             {relatedArticles.length > 0 && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-2xl font-bold text-navy-800 mb-6">
+                  <h3 className="text-2xl font-bold text-[--color-navy-800] mb-6">
                     Artikel Terkait
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {relatedArticles.map((relatedArticle) => (
                       <Link key={relatedArticle.id} href={`/blog/${relatedArticle.slug}`}>
-                        <div className="group rounded-xl border-2 border-navy-800/10 bg-white overflow-hidden hover:border-teal-400 hover:shadow-md transition-all">
+                        <div className="group rounded-xl border-2 border-[--color-navy-800]/10 bg-white overflow-hidden hover:border-[--color-teal-400] hover:shadow-md transition-all">
                           <div className="relative h-32 overflow-hidden bg-gray-100">
                             <Image
                               src={relatedArticle.image}
@@ -218,13 +218,14 @@ export default function ArticlePage() {
                               width={300}
                               height={128}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                              priority={false}
                             />
                           </div>
                           <div className="p-4">
-                            <h4 className="font-bold text-navy-800 line-clamp-2 group-hover:text-teal-500 transition-colors text-sm">
+                            <h4 className="font-bold text-[--color-navy-800] line-clamp-2 group-hover:text-[--color-teal-500] transition-colors text-sm">
                               {relatedArticle.title}
                             </h4>
-                            <div className="flex items-center gap-2 text-xs text-navy-800/50 mt-2">
+                            <div className="flex items-center gap-2 text-xs text-[--color-navy-800]/50 mt-2">
                               <Calendar className="h-3 w-3" />
                               <span>{new Date(relatedArticle.publishedDate).toLocaleDateString('id-ID', { month: 'short', day: 'numeric' })}</span>
                             </div>
@@ -240,7 +241,7 @@ export default function ArticlePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative overflow-hidden py-16 md:py-24 px-6 bg-gradient-to-r from-teal-400 to-teal-500">
+        <section className="relative overflow-hidden py-16 md:py-24 px-6 bg-gradient-to-r from-[--color-teal-400] to-[--color-teal-500]">
           <div className="mx-auto max-w-4xl text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Siap Belajar Bahasa Jepang?
@@ -249,9 +250,9 @@ export default function ArticlePage() {
               Bergabunglah dengan ribuan pelajar yang telah mulai perjalanan mereka menuju penguasaan bahasa Jepang bersama LuminaTalk.
             </p>
             <Link href="/">
-              <Button className="bg-white text-teal-500 hover:bg-gray-100 px-8 py-3 rounded-full font-bold text-lg">
+              <button className="bg-white text-[--color-teal-500] hover:bg-gray-100 px-8 py-3 rounded-full font-bold text-lg transition-colors">
                 Mulai Sekarang
-              </Button>
+              </button>
             </Link>
           </div>
         </section>
