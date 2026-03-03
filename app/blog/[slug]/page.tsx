@@ -1,7 +1,3 @@
-import { generateMetadata, generateStaticParams } from './metadata'
-
-export { generateMetadata, generateStaticParams }
-
 'use client'
 
 import { useParams } from 'next/navigation'
