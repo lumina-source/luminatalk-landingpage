@@ -1,49 +1,6 @@
-import { notFound } from 'next/navigation'
-import type { Metadata } from 'next'
-import { articles } from '@/data/articles'
+import { generateMetadata, generateStaticParams } from './metadata'
 
-type Props = {
-  params: Promise<{ slug: string }>
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const article = articles.find(a => a.slug === slug)
-
-  if (!article) {
-    return {
-      title: 'Artikel tidak ditemukan | LuminaTalk',
-    }
-  }
-
-  return {
-    title: `${article.title} | LuminaTalk`,
-    description: article.description,
-    keywords: article.tags,
-    authors: [{ name: article.author }],
-    publishedTime: article.publishedDate,
-    openGraph: {
-      title: article.title,
-      description: article.description,
-      type: 'article',
-      authors: [article.author],
-      publishedTime: article.publishedDate,
-      images: [
-        {
-          url: article.image,
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-  }
-}
-
-export async function generateStaticParams() {
-  return articles.map((article) => ({
-    slug: article.slug,
-  }))
-}
+export { generateMetadata, generateStaticParams }
 
 'use client'
 
@@ -52,8 +9,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Button } from '@/components/ui/button'
-import { articles } from '@/data/articles'
 import { Calendar, User, Clock, ArrowLeft } from 'lucide-react'
 
 const categoryLabels = {
