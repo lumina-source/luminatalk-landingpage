@@ -1,7 +1,3 @@
-import { generateMetadata, generateStaticParams } from './metadata'
-
-export { generateMetadata, generateStaticParams }
-
 'use client'
 
 import { useParams } from 'next/navigation'
@@ -10,6 +6,7 @@ import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Calendar, User, Clock, ArrowLeft } from 'lucide-react'
+import { articles } from '@/data/articles'
 
 const categoryLabels = {
   berangkat: 'Cara Berangkat',
