@@ -193,7 +193,7 @@ export default function ArticlePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative overflow-hidden py-16 md:py-24 px-6 bg-gradient-to-r from-[--color-teal-400] to-[--color-teal-500]">
+        <section className="... bg-linear-to-r from-[--color-teal-400] to-[--color-teal-500]">
           <div className="mx-auto max-w-4xl text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Siap Belajar Bahasa Jepang?

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: article.description,
     keywords: article.tags,
     authors: [{ name: article.author }],
-    publishedTime: article.publishedDate,
+
     openGraph: {
       title: article.title,
       description: article.description,
