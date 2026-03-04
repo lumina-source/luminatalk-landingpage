@@ -11,9 +11,9 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  title: 'LuminaTalk - Belajar Bahasa Jepang Lebih Praktis & Lengkap',
-  description: 'Aplikasi belajar bahasa Jepang terlengkap dengan AI Voice, Kanji Stroke, Vocabulary Quiz, Grammar Lessons, dan JLPT Tryout. Mulai dari N5 sampai N1.',
-  keywords: ['Bahasa Jepang', 'JLPT', 'Pembelajaran', 'AI Voice', 'Kanji'],
+  title: 'LuminaTalk - Aplikasi Belajar Bahasa Jepang Lebih Praktis & Lengkap',
+  description: 'Aplikasi belajar bahasa Jepang terlengkap dengan AI Voice, Kanji Stroke, Vocabulary Quiz, Grammar Lessons, dan JLPT Tryout. Mulai dari N5 sampai N1, tanpa iklan.',
+  keywords: ['luminatalk', 'LuminaTalk', 'Aplikasi belajar bahasa jepang', 'Belajar bahasa jepang online', 'Bahasa Jepang', 'JLPT', 'Pembelajaran', 'AI Voice', 'Kanji'],
   // charset dihapus - sudah otomatis di Next.js 14+
   generator: 'v0.app',
   icons: {
@@ -68,6 +68,24 @@ export default function RootLayout({
           <AnalyticsWrapper />
         </Suspense>
       </body>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "LuminaTalk",
+            "operatingSystem": "Web",
+            "applicationCategory": "EducationApplication",
+            "description": "Aplikasi belajar bahasa Jepang dan panduan karir terlengkap untuk persiapan kerja di Jepang tahun 2026.",
+            "offers": {
+              "@type": "Offer",
+              "price": "39000",
+              "priceCurrency": "IDR"
+            }
+          }),
+        }}
+      />
     </html>
   )
 }
