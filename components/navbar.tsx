@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Screenshot", href: "#screenshots" },
   { label: "Harga", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
-  { label: "Artikel", href: "#articles" },
+  { label: "Blog", href: "/blog" },
 ]
 
 export function Navbar() {

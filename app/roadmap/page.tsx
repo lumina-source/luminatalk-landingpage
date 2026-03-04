@@ -114,11 +114,29 @@ Fase ini mengubah LuminaTalk dari aplikasi pembelajaran menjadi jembatan menuju 
   }
 ]
 
-function PhaseCard({ phase, onDetailClick }: any) {
+interface Phase {
+  id: number
+  title: string
+  description: string
+  features: string[]
+  status: string
+  statusColor: string
+  detailedInfo: string
+  image: string
+  imageAlt: string
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+}
+
+interface PhaseCardProps {
+  phase: Phase
+  onDetailClick: () => void
+}
+
+function PhaseCard({ phase, onDetailClick }: PhaseCardProps) {
   const Icon = phase.icon
   
   return (
-    <div className="group relative rounded-2xl border-2 border-teal-100 bg-gradient-to-br from-white to-teal-50/50 p-5 md:p-6 transition-all duration-300 hover:border-teal-200 hover:shadow-lg overflow-hidden cursor-pointer" onClick={onDetailClick}>
+    <div className="group relative rounded-2xl border-2 border-[--color-teal-100] bg-gradient-to-br from-white to-[--color-teal-50]/50 p-5 md:p-6 transition-all duration-300 hover:border-[--color-teal-200] hover:shadow-lg overflow-hidden cursor-pointer" onClick={onDetailClick}>
       {/* Status Badge */}
       <div className={`absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-gradient-to-r ${phase.statusColor} px-3 py-1 text-white text-xs font-bold uppercase tracking-wide shadow-md`}>
         <div className={`inline-block h-1.5 w-1.5 rounded-full bg-white ${phase.status === 'LIVE NOW' ? 'animate-pulse' : ''}`} />
@@ -128,24 +146,24 @@ function PhaseCard({ phase, onDetailClick }: any) {
       {/* Header with icon */}
       <div className="flex items-start gap-4 mb-4">
         <div className="rounded-lg bg-white p-2 shadow-sm group-hover:shadow-md transition-all">
-          <Icon className="h-6 w-6 text-teal-400" />
+          <Icon className="h-6 w-6 text-[--color-teal-400]" />
         </div>
         <div className="flex-1 pt-1">
-          <div className="text-2xl font-bold text-navy-800">
+          <div className="text-2xl font-bold text-[--color-navy-800]">
             Phase {phase.id}: {phase.title}
           </div>
         </div>
       </div>
 
       {/* Description */}
-      <p className="text-sm md:text-base text-navy-800/70 mb-4 line-clamp-2">{phase.description}</p>
+      <p className="text-sm md:text-base text-[--color-navy-800]/70 mb-4 line-clamp-2">{phase.description}</p>
 
       {/* Features grid - compact */}
       <div className="grid grid-cols-2 gap-2 mb-4">
-        {phase.features.map((feature, idx) => (
+        {phase.features.map((feature: string, idx: number) => (
           <div key={idx} className="flex items-start gap-2">
-            <CheckCircle2 className="h-3 w-3 flex-shrink-0 text-teal-400 mt-1" />
-            <span className="text-xs text-navy-800/60 line-clamp-1">{feature}</span>
+            <CheckCircle2 className="h-3 w-3 flex-shrink-0 text-[--color-teal-400] mt-1" />
+            <span className="text-xs text-[--color-navy-800]/60 line-clamp-1">{feature}</span>
           </div>
         ))}
       </div>
@@ -165,7 +183,7 @@ function PhaseCard({ phase, onDetailClick }: any) {
       <div className="space-y-2">
         <Button
           size="sm"
-          className="w-full rounded-lg bg-teal-400 text-white hover:bg-teal-500 text-xs md:text-sm"
+          className="w-full rounded-lg bg-[--color-teal-400] text-white hover:bg-[--color-teal-500] text-xs md:text-sm"
           onClick={(e) => {
             e.stopPropagation()
             onDetailClick()
@@ -178,7 +196,7 @@ function PhaseCard({ phase, onDetailClick }: any) {
           asChild
           size="sm"
           variant="outline"
-          className="w-full rounded-lg border-teal-200 text-xs md:text-sm"
+          className="w-full rounded-lg border-[--color-teal-200] text-xs md:text-sm"
         >
           <a href={phase.id === 1 ? 'https://drive.google.com/drive/folders/1JsSOKgWPijbgt4fC3Xgqt1wT_C5aG46q?usp=sharing' : '#'} onClick={(e) => phase.id !== 1 && e.preventDefault()}>
             {phase.status === 'LIVE NOW' ? 'Download APK' : 'Coming Soon'}
@@ -200,8 +218,8 @@ export default function RoadmapPage() {
         {/* Header Section */}
         <section className="relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute top-10 left-10 h-96 w-96 rounded-full bg-teal-200/20 blur-3xl" />
-            <div className="absolute right-10 bottom-10 h-96 w-96 rounded-full bg-teal-100/20 blur-3xl" />
+            <div className="absolute top-10 left-10 h-96 w-96 rounded-full bg-[--color-teal-200]/20 blur-3xl" />
+            <div className="absolute right-10 bottom-10 h-96 w-96 rounded-full bg-[--color-teal-100]/20 blur-3xl" />
           </div>
 
           <div className="relative mx-auto max-w-7xl px-6 py-12 md:py-16">
@@ -212,10 +230,10 @@ export default function RoadmapPage() {
                   Kembali ke Home
                 </Button>
               </Link>
-              <h1 className="text-4xl md:text-5xl font-bold text-navy-800">
-                Roadmap <span className="text-teal-400">LuminaTalk 2026</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-[--color-navy-800]">
+                Roadmap <span className="text-[--color-teal-400]">LuminaTalk 2026</span>
               </h1>
-              <p className="mx-auto max-w-2xl text-base md:text-lg text-navy-800/60">
+              <p className="mx-auto max-w-2xl text-base md:text-lg text-[--color-navy-800]/60">
                 Perjalanan transformasi dari perintisan hingga ekosistem pembelajaran profesional dengan teknologi AI terdepan
               </p>
             </div>
@@ -238,15 +256,15 @@ export default function RoadmapPage() {
         {/* Founder's Note Section */}
         <section className="relative overflow-hidden py-12 md:py-20 px-6">
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-teal-100/10 blur-3xl" />
+            <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-[--color-teal-100]/10 blur-3xl" />
           </div>
 
           <div className="relative mx-auto max-w-6xl">
-            <div className="rounded-3xl border-2 border-navy-800/10 bg-gradient-to-br from-navy-800/5 to-teal-400/5 p-8 md:p-16 backdrop-blur-sm">
+            <div className="rounded-3xl border-2 border-[--color-navy-800]/10 bg-gradient-to-br from-[--color-navy-800]/5 to-[--color-teal-400]/5 p-8 md:p-16 backdrop-blur-sm">
               
               {/* Quote */}
               <div className="mb-12 text-center space-y-4">
-                <p className="text-2xl md:text-3xl italic font-serif text-navy-800 text-balance">
+                <p className="text-2xl md:text-3xl italic font-serif text-[--color-navy-800] text-balance">
                   "Belajar bahasa baru bukan sekadar menghafal kata, melainkan membuka jendela menuju dunia yang baru."
                 </p>
               </div>
@@ -256,8 +274,8 @@ export default function RoadmapPage() {
                 {/* Photo - Left */}
                 <div className="md:col-span-1 flex justify-center">
                   <div className="relative">
-                    <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-teal-200 to-teal-100 opacity-30 blur-lg" />
-                    <div className="relative rounded-3xl overflow-hidden border-4 border-teal-300 shadow-xl">
+                    <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[--color-teal-200] to-[--color-teal-100] opacity-30 blur-lg" />
+                    <div className="relative rounded-3xl overflow-hidden border-4 border-[--color-teal-300] shadow-xl">
                       <Image
                         src="/images/ben-wijaya.jpeg"
                         alt="Ben Wijaya - Founder"
@@ -272,13 +290,13 @@ export default function RoadmapPage() {
                 {/* Text - Right */}
                 <div className="md:col-span-2 space-y-6">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-navy-800 mb-2">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[--color-navy-800] mb-2">
                       Pesan dari Pendiri
                     </h2>
-                    <div className="h-1 w-16 bg-gradient-to-r from-teal-400 to-teal-300 rounded-full" />
+                    <div className="h-1 w-16 bg-gradient-to-r from-[--color-teal-400] to-[--color-teal-300] rounded-full" />
                   </div>
 
-                  <div className="space-y-4 text-navy-800/70 leading-relaxed text-lg">
+                  <div className="space-y-4 text-[--color-navy-800]/70 leading-relaxed text-lg">
                     <p>
                       Halo, saya <span className="font-semibold text-navy-800">Ben Wijaya</span>, Pendiri LuminaTalk.
                     </p>
