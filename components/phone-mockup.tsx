@@ -10,43 +10,44 @@ interface PhoneMockupProps {
 export function PhoneMockup({ src, alt, type = "ios", className = "" }: PhoneMockupProps) {
   return (
     <div className={`relative inline-flex items-center justify-center ${className}`}>
-      {/* Phone body shadow and gradient background */}
-      <div className="absolute -inset-6 bg-gradient-to-br from-[--color-teal-400]/20 via-transparent to-[--color-navy-800]/20 rounded-[3rem] blur-2xl" />
+      {/* Premium shadow and glow */}
+      <div className="absolute -inset-8 bg-gradient-to-br from-[--color-teal-400]/15 via-[--color-teal-400]/5 to-[--color-navy-800]/25 rounded-[3.5rem] blur-3xl opacity-80" />
+      <div className="absolute -inset-4 bg-gradient-to-t from-black/10 to-transparent rounded-[2.8rem] blur-2xl" />
       
-      {/* Main phone frame */}
+      {/* Phone body */}
       <div className="relative">
-        {/* Outer frame - black bezels */}
-        <div className="relative bg-gradient-to-b from-[--color-navy-800] to-black rounded-[2.5rem] p-3 shadow-[0_0_0_12px_rgba(0,0,0,0.8),0_25px_80px_-12px_rgba(0,0,0,0.6)]">
+        {/* Metallic frame */}
+        <div 
+          className="relative rounded-[2.8rem] overflow-hidden p-3"
+          style={{
+            background: 'linear-gradient(135deg, rgba(42,45,62,0.95) 0%, rgba(26,29,46,0.98) 50%, rgba(42,45,62,0.95) 100%)',
+            boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.15), 0 0 0 0.5px rgba(0,0,0,0.8), 0 25px 60px -12px rgba(0,0,0,0.8), 0 40px 120px -20px rgba(0,0,0,0.9)'
+          }}
+        >
+          {/* Dynamic Island notch */}
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-full z-30" />
           
-          {/* Speaker cutout */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-2 bg-black rounded-b-lg z-20" />
-          
-          {/* Front camera notch */}
-          <div className="absolute top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-black rounded-full z-20" />
-          
-          {/* Screen area with border radius */}
-          <div className="relative bg-white overflow-hidden rounded-[2.2rem]">
-            {/* Status bar simulation */}
-            <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-[--color-navy-800]/10 to-transparent z-10 flex items-center justify-between px-4 text-xs font-bold text-[--color-navy-800]/60">
-              <span>9:41</span>
-              <span>●●●●●</span>
-            </div>
-            
-            {/* Screen content */}
-            <div className="relative w-[260px] h-[540px] overflow-hidden">
+          {/* Screen display */}
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-black">
+            {/* Screen with image */}
+            <div className="relative w-72 h-[560px] overflow-hidden">
               <Image
                 src={src}
                 alt={alt}
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
+            
+            {/* Glossy reflection overlay */}
+            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-b from-white/8 via-transparent to-black/20 pointer-events-none" />
           </div>
-          
-          {/* Home button */}
-          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-10 h-10 border-4 border-[--color-navy-800] rounded-full bg-gradient-to-b from-[--color-navy-800] to-black" />
         </div>
+        
+        {/* Side lighting highlight */}
+        <div className="absolute -right-3 top-1/3 w-0.5 h-40 bg-gradient-to-b from-white/30 to-transparent rounded-full blur-md" />
       </div>
     </div>
   )
