@@ -61,6 +61,24 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="format-detection" content="telephone=no" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "LuminaTalk",
+              "operatingSystem": "Web",
+              "applicationCategory": "EducationApplication",
+              "description": "Aplikasi belajar bahasa Jepang dan panduan karir terlengkap untuk persiapan kerja di Jepang tahun 2026.",
+              "offers": {
+                "@type": "Offer",
+                "price": "39000",
+                "priceCurrency": "IDR"
+              }
+            }),
+          }}
+        />
       </head>
       <body className="font-nunito antialiased bg-background text-foreground">
         {children}
@@ -68,24 +86,6 @@ export default function RootLayout({
           <AnalyticsWrapper />
         </Suspense>
       </body>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "LuminaTalk",
-            "operatingSystem": "Web",
-            "applicationCategory": "EducationApplication",
-            "description": "Aplikasi belajar bahasa Jepang dan panduan karir terlengkap untuk persiapan kerja di Jepang tahun 2026.",
-            "offers": {
-              "@type": "Offer",
-              "price": "39000",
-              "priceCurrency": "IDR"
-            }
-          }),
-        }}
-      />
     </html>
   )
 }
