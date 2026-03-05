@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 interface PhoneMockupProps {
   src: string
   alt: string
@@ -10,40 +8,18 @@ interface PhoneMockupProps {
 export function PhoneMockup({ src, alt, type = "ios", className = "" }: PhoneMockupProps) {
   return (
     <div className={`relative inline-block ${className}`}>
-      {/* Phone frame */}
-      <div
-        className={`relative overflow-hidden bg-navy-800 ${
-          type === "ios"
-            ? "rounded-[2.5rem] p-[10px] shadow-[0_0_0_2px_#2a2d3e,0_25px_60px_-12px_rgba(0,0,0,0.4)]"
-            : "rounded-[1.8rem] p-[8px] shadow-[0_0_0_2px_#2a2d3e,0_25px_60px_-12px_rgba(0,0,0,0.4)]"
-        }`}
-      >
-        {/* Notch (iOS) or Camera (Android) */}
-        {type === "ios" ? (
-          <div className="absolute top-[10px] left-1/2 z-20 h-[28px] w-[100px] -translate-x-1/2 rounded-b-2xl bg-navy-800" />
-        ) : (
-          <div className="absolute top-[14px] left-1/2 z-20 h-[8px] w-[8px] -translate-x-1/2 rounded-full bg-navy-900" />
-        )}
-
-        {/* Screen */}
-        <div
-          className={`relative overflow-hidden bg-teal-50 ${
-            type === "ios" ? "rounded-[2rem]" : "rounded-[1.4rem]"
-          }`}
-        >
-          <Image
-            src={src}
-            alt={alt}
-            width={300}
-            height={640}
-            className="block h-auto w-[260px] object-cover md:w-[280px]"
-          />
+      {/* FlyonUI Mockup Phone */}
+      <div className="mockup-phone">
+        <div className="mockup-phone-camera"></div>
+        <div className="mockup-phone-display flex justify-center">
+          <div className="h-full w-80">
+            <img 
+              className="size-full object-cover" 
+              src={src} 
+              alt={alt}
+            />
+          </div>
         </div>
-
-        {/* Home indicator (iOS) */}
-        {type === "ios" && (
-          <div className="absolute bottom-[14px] left-1/2 h-[4px] w-[100px] -translate-x-1/2 rounded-full bg-white/30" />
-        )}
       </div>
     </div>
   )
