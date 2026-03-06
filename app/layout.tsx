@@ -11,9 +11,9 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  title: 'LuminaTalk - Belajar Bahasa Jepang Lebih Praktis & Lengkap',
-  description: 'Aplikasi belajar bahasa Jepang terlengkap dengan AI Voice, Kanji Stroke, Vocabulary Quiz, Grammar Lessons, dan JLPT Tryout. Mulai dari N5 sampai N1.',
-  keywords: ['Bahasa Jepang', 'JLPT', 'Pembelajaran', 'AI Voice', 'Kanji'],
+  title: 'Aplikasi Belajar Bahasa Jepang & Karir Jepang 2026 | LuminaTalk',
+  description: 'Aplikasi belajar bahasa Jepang terlengkap dengan AI Voice, Kanji Stroke, Vocabulary Quiz, Grammar Lessons, dan JLPT Tryout. Mulai dari N5 sampai N1, tanpa iklan.',
+  keywords: ['luminatalk', 'LuminaTalk', 'Belajar bahasa Jepang persiapan Tokutei Ginou 2026', 'Latihan soal JLPT N5 gratis LuminaTalk', 'Aplikasi belajar bahasa Jepang untuk kerja di Jepang', 'Aplikasi belajar bahasa jepang', 'Belajar bahasa jepang online', 'Bahasa Jepang', 'JLPT', 'Pembelajaran', 'AI Voice', 'Kanji'],
   // charset dihapus - sudah otomatis di Next.js 14+
   generator: 'v0.app',
   icons: {
@@ -61,6 +61,24 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="format-detection" content="telephone=no" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "LuminaTalk",
+              "operatingSystem": "Web",
+              "applicationCategory": "EducationApplication",
+              "description": "Aplikasi belajar bahasa Jepang dan panduan karir terlengkap untuk persiapan kerja di Jepang tahun 2026.",
+              "offers": {
+                "@type": "Offer",
+                "price": "39000",
+                "priceCurrency": "IDR"
+              }
+            }),
+          }}
+        />
       </head>
       <body className="font-nunito antialiased bg-background text-foreground">
         {children}
